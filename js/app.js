@@ -8,8 +8,15 @@ const loadPhones = async (searchText) => {
 const displayPhones = (phones) => {
     const phonesContainer = document.getElementById("phones-container");
     phonesContainer.textContent = '';
-    // display 20 phones only
-    phones = phones.slice(0,8);
+    // display 10 phones only
+    const showMore = document.getElementById('show-more');
+    if(phones.length > 10){
+        phones = phones.slice(0,10);
+        showMore.classList.remove('d-none');
+    }
+    else{
+        showMore.classList.add('d-none');
+    }
 
     // display no phone found
     const noPhone = document.getElementById('no-found-message');
@@ -55,7 +62,7 @@ const toggleSpinner = isLoading => {
         loaderSection.classList.remove('d-none')
     }
     else{
-        loaderSection.classList.add('d-none');
+        loaderSection.classList.add('d-none'); 
     }
 }
 // loadPhones();
